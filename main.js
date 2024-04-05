@@ -1,4 +1,4 @@
-const localStorageName = 'lista-de-tarefas';
+const localStorageKey = 'lista-de-tarefas';
 
 function newTask(){
     let input = document.getElementById('tarefa');
@@ -9,24 +9,32 @@ function newTask(){
     }
     else
     {
-        let values = JSON.parse(localStorage.getItem(localStorageName) || "[]")
+        let values = JSON.parse(localStorage.getItem(localStorageKey) || "[]")
         values.push({
             name: input.value
         })
-        localStorage.setItem(localStorageName,JSON.stringify(values))
+        localStorage.setItem(localStorageKey,JSON.stringify(values))
         showValues()
     }
+    input.value = ''
 }
 
 function showValues()
 {
-    let values = JSON.parse(localStorage.getItem(localStorageName) || "[]")
+    let values = JSON.parse(localStorage.getItem(localStorageKey) || "[]")
     let list = document.getElementById('tarefas-anotadas')
     list.innerHTML = ''
     for (let i = 0; i < values.length; i++)
     {
-        list.innerHTML += `<li>${values[i]['name']}</li>`
+        list.innerHTML += `<li><button class="btn-delete" onclick='clickDelete("${values[i]['name']}")'><img src="Assets/DeleteIcon.svg" alt="Icone de deletar a tarefa" class="icones"></button>${values[i]['name']}</li>`
     }
 }
-
+function clickDelete(data)
+{
+    let values = JSON.parse(localStorage.getItem(localStorageKey) || "[]")
+    let index = values.findIndex(x => x.name == data)
+    values.splice(index, 1)
+    localStorage.setItem(localStorageKey,JSON.stringify(values))
+    showValues()
+}
 showValues()
