@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <!-- criar um site de lista de tarefas, colocar um contador
-input text e, se possivel, colocar o ativador de modo
-noturno  -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="Assets/FavIcon.svg" type="image/x-icon">
     <title>Lista De Tarefas</title>
 </head>
 <body>
     <main class="background">
         <h1 class="title">| Lista de Tarefas |</h1>
         <div class="container">
-            <div class="textfield">
-                <label for="tarefa">Digite aqui sua tarefa:</label>
-                <input type="text" name="tarefa" id="tarefa" placeholder="digite aqui" maxlength="40">
+            <div class="container-interacao">
+                <div class="textfield">
+                    <label for="tarefa">Digite aqui sua tarefa:</label>
+                    <input type="text" name="tarefa" id="tarefa" placeholder="digite aqui" maxlength="39" autocomplete="off">
+                </div>
+                <button class="btn-confirm" onclick="newTask()" id="btn-confirmId">Confirmar</button>
             </div>
-            <button class="btn-confirm">Confirmar</button>
             <div class="container-anotadas">
-                <div class="tareras-anotadas">sfafs</div>
+                <ul id="tarefas-anotadas">
+                </ul>
             </div>
         </div>
     </main>
-    <script src="main.js"></script>
 </body>
+<script src="main.js"></script>
 </html>
